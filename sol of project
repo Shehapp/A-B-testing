@@ -3,6 +3,7 @@ cookie_cats <- read.table(file = "clipboard",sep = "\t", header=TRUE)
  
 
 #miss value
+library(naniar)
 n_miss(cookie_cats)
 
 
