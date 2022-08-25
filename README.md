@@ -1,3 +1,3 @@
-# R-yabdani
+# R
 statis...with R project
 A/B testing
