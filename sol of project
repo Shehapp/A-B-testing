@@ -83,7 +83,69 @@ data2 %>%
 data2 %>% 
     group_by( retention_7 ) %>% 
     summarise( percent = 100 * n() / nrow( data2 ) )
+    
+    
+    
+    
+ library(infer)
 
+library(dplyr)
+    
+    
+    #botistrabing day 1
+    
+    #null distribution 
+dis<-cookie_cats%>%
+     specify(retention_1~ version ,success = "TRUE")%>%
+     hypothesize(null="independence")%>%
+     generate(reps=500,type = "permute")%>%
+     calculate(stat="diff in props",order=c("gate_30","gate_40"))
+#observed
+ observed<-cookie_cats%>%
+     group_by(version)%>%
+     summarize(prop=mean(retention_1 ==TRUE))%>%
+     summarize(diff(prop))
+#visualize observed in null dis..
+ dis%>%
+ visualize()+
+ shade_p_value(observed,direction = "right")
+ #p-value
+ dis%>%
+ get_p_value(observed,direction = "right")#0.96
+ 
+ 
+ 
+ 
 
+    #botisrabing day 7
+   
+    #null distribution 
+dis<-cookie_cats%>%
+     specify(retention_7~ version ,success = "TRUE")%>%
+     hypothesize(null="independence")%>%
+     generate(reps=500,type = "permute")%>%
+     calculate(stat="diff in props",order=c("gate_30","gate_40"))
+#observed
+ observed<-cookie_cats%>%
+     group_by(version)%>%
+     summarize(prop=mean(retention_7 ==TRUE))%>%
+     summarize(diff(prop))
+#visualize observed in null dis..
+ dis%>%
+ visualize()+
+ shade_p_value(observed,direction = "right")
+ #p-value
+ dis%>%
+ get_p_value(observed,direction = "right")#1
+ 
+ 
+ 
+ #conclusion
+ #p-val on day1 is 0.97
+ #p-val in day7 is 1
+ #and lock game from gate 30
+ 
+ 
+ 
 
 
