@@ -8,6 +8,7 @@ n_miss(cookie_cats)
 
 
 #duplicate 
+library(dplyr)
 duplicated(cookie_cats)
 distinct(cookie_cats,userid, .keep_all= TRUE)
 
@@ -39,8 +40,8 @@ summary(cookie_cats[])
 
 
 #count players in gate 30,40
-length(cookie_cats$version[cookie_cats$version="gate_30"])#44700
-length(cookie_cats$version[cookie_cats$version="gate_40"])#45489
+length(cookie_cats$version[cookie_cats$version=="gate_30"])#44700
+length(cookie_cats$version[cookie_cats$version=="gate_40"])#45489
 
 
 
